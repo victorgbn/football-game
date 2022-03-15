@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 from typing import List
 
 from pygame import K_LEFT, K_RIGHT
@@ -18,7 +15,7 @@ class Game:
         self.player = Player(self)
         self.all_players = Group()
         self.all_players.add(self.player)
-        self.yellowcard_event = YellowcardFallEvent()
+        self.yellowcard_event = YellowcardFallEvent(self)
         self.all_referees = Group()
         self.pressed = dict()
 
@@ -40,32 +37,31 @@ class Game:
         self.spawn_referee()
 
     def update(self, screen) -> None:
-        # Application du joueur sur la surface
+        # Added player in screen
         screen.blit(self.player.image, self.player.rect)
 
-        # Application de la barre de vie du joueur
+        # Added health bar in player
         self.player.update_health_bar(screen)
 
         self.yellowcard_event.update_bar(screen)
 
-        # Déplacement des projectiles
+        # Move Projectiles
         for projectile in self.player.all_projectiles:
             projectile.move()
-        # Déplacement des montres
+        # Move Referees
         for referee in self.all_referees:
             referee.forward()
             referee.update_health_bar(screen)
+        # Move Yellow card
         for yellowcard in self.yellowcard_event.all_yellowcards:
             yellowcard.fall()
 
-        # Application des projectiles sur la surface
+        # Added in scren
         self.player.all_projectiles.draw(screen)
-        # Application des monstres sur la surface
         self.all_referees.draw(screen)
-        # Application des comètes sur la surface
         self.yellowcard_event.all_yellowcards.draw(screen)
 
-        # Déplacement du joueur
+        # Move player
         if self.pressed.get(K_RIGHT) and self.player.rect.x + self.player.rect.width < screen.get_width():
             self.player.move_right()
         elif self.pressed.get(K_LEFT) and self.player.rect.x > 0:
