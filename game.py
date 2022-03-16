@@ -1,12 +1,12 @@
 from typing import List
 
+import pygame
 from pygame import K_LEFT, K_RIGHT
 from pygame.sprite import Group, Sprite, spritecollide
 
 from yellowcard_event import YellowcardFallEvent
 from referee import Referee
 from player import Player
-
 
 class Game:
 
@@ -18,6 +18,8 @@ class Game:
         self.yellowcard_event = YellowcardFallEvent(self)
         self.all_referees = Group()
         self.pressed = dict()
+        self.score = 0
+        self.font = pygame.font.Font("assets/font.ttf", 40)
 
     def check_collision(self, sprite: Sprite, group: Group) -> List[Sprite]:
         return spritecollide(sprite, group, False)
@@ -26,6 +28,7 @@ class Game:
         self.all_referees = Group()
         self.player.health = self.player.max_health
         self.is_playing = False
+        self.score = 0
 
     def spawn_referee(self) -> None:
         referee = Referee(self)
@@ -44,6 +47,10 @@ class Game:
         self.player.update_health_bar(screen)
 
         self.yellowcard_event.update_bar(screen)
+
+        ## Added score
+        score_text = self.font.render(f"Score : {self.score}", 1, (0, 0, 0))
+        screen.blit(score_text, (30, 30))
 
         # Move Projectiles
         for projectile in self.player.all_projectiles:

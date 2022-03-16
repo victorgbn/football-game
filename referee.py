@@ -23,6 +23,7 @@ class Referee(Sprite):
         self.health -= amount
         if self.health <= 0:
             self.recycle()
+            self.game.score += 20
 
     def update_health_bar(self, surface: Surface) -> None:
         draw.rect(surface, (60, 63, 60), [self.rect.x + 10, self.rect.y - 20, self.max_health, 5])
