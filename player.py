@@ -37,5 +37,5 @@ class Player(sprite.Sprite):
             self.rect.x += self.velocity
 
     def update_health_bar(self, surface: Surface) -> None:
-        draw.rect(surface, (60, 63, 60), [self.rect.x + 50, self.rect.y + 20, self.max_health, 7])
-        draw.rect(surface, (111, 210, 46), [self.rect.x + 50, self.rect.y + 20, self.health, 7])
+        draw.rect(surface, (60, 63, 60), [self.rect.x + 15, self.rect.y + - 5, self.max_health, 7])
+        draw.rect(surface, (111, 210, 46), [self.rect.x + 15, self.rect.y + - 5, self.health, 7])
