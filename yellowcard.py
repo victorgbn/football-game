@@ -16,7 +16,7 @@ class Yellowcard(sprite.Sprite):
 
     def remove(self):
         self.yellowcard_event.all_yellowcards.remove(self)
-
+        self.yellowcard_event.game.sound_manager.play('yellowcard')
 
     def fall(self):
         self.rect.y += self.velocity

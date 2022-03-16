@@ -28,6 +28,7 @@ class Player(sprite.Sprite):
     def launch_projectile(self) -> None:
         # Init projectile
         self.all_projectiles.add(Projectile(self))
+        self.game.sound_manager.play('shoot')
 
     def move_left(self) -> None:
         self.rect.x -= self.velocity

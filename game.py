@@ -7,6 +7,7 @@ from pygame.sprite import Group, Sprite, spritecollide
 from yellowcard_event import YellowcardFallEvent
 from referee import Referee
 from player import Player
+from sounds import SoundManager
 
 class Game:
 
@@ -20,6 +21,7 @@ class Game:
         self.pressed = dict()
         self.score = 0
         self.font = pygame.font.Font("assets/font.ttf", 40)
+        self.sound_manager = SoundManager()
 
     def check_collision(self, sprite: Sprite, group: Group) -> List[Sprite]:
         return spritecollide(sprite, group, False)
@@ -29,6 +31,7 @@ class Game:
         self.player.health = self.player.max_health
         self.is_playing = False
         self.score = 0
+        self.sound_manager.play('game_over')
 
     def spawn_referee(self) -> None:
         referee = Referee(self)

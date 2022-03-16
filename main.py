@@ -52,3 +52,4 @@ while game_is_running:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if play_button_rect.collidepoint(event.pos):
                 game.start()
+                game.sound_manager.play('click')
