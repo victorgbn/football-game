@@ -12,7 +12,7 @@ class Referee(Sprite):
         self.game = game
         self.health = 100
         self.max_health = 100
-        self.attack = 0.3
+        self.attack = 0.1
         self.image = image.load('assets/referee.png')
         self.rect = self.image.get_rect()
         self.rect.x = 1000 + random.randint(0, 300)

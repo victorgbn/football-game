@@ -6,7 +6,7 @@ class Projectile(sprite.Sprite):
     def __init__(self, player):
         super().__init__()
         self.player = player
-        self.velocity = 5
+        self.velocity = 3
         self.image = image.load('assets/projectile.png')
         self.image = transform.scale(self.image, (50, 50))
         self.origin_image = self.image
