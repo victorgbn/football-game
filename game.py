@@ -57,7 +57,7 @@ class Game:
 
         ## To display score
         score_text = self.font.render(f"Score : {self.score}", 1, (0, 0, 0))
-        screen.blit(score_text, (510, 400))
+        screen.blit(score_text, (510, 450))
 
         # Move Projectiles
         for projectile in self.player.all_projectiles:
