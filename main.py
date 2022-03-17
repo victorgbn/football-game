@@ -25,7 +25,7 @@ game_is_running = True
 while game_is_running:
 
     ## Added background
-    screen.blit(background, (-650, -300))
+    screen.blit(background, (-650, -100))
 
     # Check if game is playing
     if game.is_playing:
