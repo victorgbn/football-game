@@ -14,6 +14,7 @@ class Yellowcard(sprite.Sprite):
         self.velocity = randint(1, 3)
         self.yellowcard_event = yellowcard_event
 
+    # Delete Yellowcard Method
     def remove(self):
         self.yellowcard_event.all_yellowcards.remove(self)
         self.yellowcard_event.game.sound_manager.play('yellowcard')

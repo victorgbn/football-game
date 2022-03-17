@@ -10,5 +10,6 @@ class SoundManager:
             'yellowcard': pygame.mixer.Sound("assets/sounds/yellowcard.ogg")
         }
     
+    # Play Sound Method
     def play(self, name) -> None:
         self.sounds[name].play()

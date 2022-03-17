@@ -23,9 +23,11 @@ class Game:
         self.font = pygame.font.Font("assets/font.ttf", 40)
         self.sound_manager = SoundManager()
 
+    # If collision method
     def check_collision(self, sprite: Sprite, group: Group) -> List[Sprite]:
         return spritecollide(sprite, group, False)
 
+    # If lose 
     def game_over(self) -> None:
         self.all_referees = Group()
         self.player.health = self.player.max_health
@@ -33,10 +35,12 @@ class Game:
         self.score = 0
         self.sound_manager.play('game_over')
 
+    # Added referee
     def spawn_referee(self) -> None:
         referee = Referee(self)
         self.all_referees.add(referee)
 
+    # Star game method
     def start(self) -> None:
         self.is_playing = True
         self.spawn_referee()
@@ -46,12 +50,12 @@ class Game:
         # Added player in screen
         screen.blit(self.player.image, self.player.rect)
 
-        # Added health bar in player
+        # To display health bar in player
         self.player.update_health_bar(screen)
 
         self.yellowcard_event.update_bar(screen)
 
-        ## Added score
+        ## To display score
         score_text = self.font.render(f"Score : {self.score}", 1, (0, 0, 0))
         screen.blit(score_text, (510, 400))
 
@@ -66,7 +70,7 @@ class Game:
         for yellowcard in self.yellowcard_event.all_yellowcards:
             yellowcard.fall()
 
-        # Added in scren
+        # To display in scren
         self.player.all_projectiles.draw(screen)
         self.all_referees.draw(screen)
         self.yellowcard_event.all_yellowcards.draw(screen)

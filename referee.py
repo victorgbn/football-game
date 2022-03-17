@@ -18,23 +18,27 @@ class Referee(Sprite):
         self.rect.x = 1000 + random.randint(0, 300)
         self.rect.y = 540
         self.velocity = random.randint(1, 3)
-
+    
+    # Added Referee Damages
     def damage(self, amount: int) -> None:
         self.health -= amount
         if self.health <= 0:
             self.recycle()
             self.game.score += 20
 
+    # Referee Health Bar
     def update_health_bar(self, surface: Surface) -> None:
         draw.rect(surface, (60, 63, 60), [self.rect.x + 10, self.rect.y - 20, self.max_health, 5])
         draw.rect(surface, (111, 210, 46), [self.rect.x + 10, self.rect.y - 20, self.health, 5])
 
+    # Move Referee and attack
     def forward(self) -> None:
         if not self.game.check_collision(self, self.game.all_players):
             self.rect.x -= self.velocity
         else:
             self.game.player.damage(self.attack)
 
+    # Create Random Referees
     def recycle(self) -> None:
         self.rect.x = 1000 + random.randint(0, 300)
         self.health = self.max_health

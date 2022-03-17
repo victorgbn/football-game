@@ -12,9 +12,11 @@ class YellowcardFallEvent:
         # define sprite group of yellowcar
         self.all_yellowcards = sprite.Group()
 
+    # add percent method
     def add_percent(self) -> None:
         self.percent += self.percent_speed / 100
 
+    # push yellow card after load
     def attempt_fall(self) -> None:
         if self.is_full_loaded():
             self.yellowcard_fall()
